@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ultimate Campaign — World Cup Draft</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div id="game-container">
+      <header>
+        <h1>🏆 ULTIMATE CAMPAIGN</h1>
+        <p
+          id="squad-counter"
+          style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px"
+        >
+          Construa sua Seleção Lendária
+        </p>
+      </header>
+
+      <!-- TELA 1: MENU INICIAL -->
+      <div id="screen-start" class="screen active">
+        <h2 style="margin-bottom: 20px; text-align: center">
+          Configurações da Partida
+        </h2>
+
+        <div class="setup-group">
+          <label>Formação</label>
+          <div class="toggle-grid">
+            <button
+              type="button"
+              class="toggle-btn formation-btn active"
+              data-tactic="4-3-3"
+              onclick="selectFormation('4-3-3')"
+            >
+              4-3-3
+            </button>
+            <button
+              type="button"
+              class="toggle-btn formation-btn"
+              data-tactic="4-4-2"
+              onclick="selectFormation('4-4-2')"
+            >
+              4-4-2
+            </button>
+            <button
+              type="button"
+              class="toggle-btn formation-btn"
+              data-tactic="4-2-3-1"
+              onclick="selectFormation('4-2-3-1')"
+            >
+              4-2-3-1
+            </button>
+            <button
+              type="button"
+              class="toggle-btn formation-btn"
+              data-tactic="3-5-2"
+              onclick="selectFormation('3-5-2')"
+            >
+              3-5-2
+            </button>
+          </div>
+        </div>
+
+        <div class="setup-group">
+          <label>Estilo</label>
+          <div class="toggle-grid">
+            <button
+              type="button"
+              class="toggle-btn style-btn"
+              data-style="defensivo"
+              onclick="selectStyle('defensivo')"
+            >
+              Defensivo
+            </button>
+            <button
+              type="button"
+              class="toggle-btn style-btn active"
+              data-style="equilibrado"
+              onclick="selectStyle('equilibrado')"
+            >
+              Equilibrado
+            </button>
+            <button
+              type="button"
+              class="toggle-btn style-btn"
+              data-style="ofensivo"
+              onclick="selectStyle('ofensivo')"
+            >
+              Ofensivo
+            </button>
+          </div>
+        </div>
+
+        <div class="setup-group">
+          <label for="mode-select">Modo de Jogo</label>
+          <select id="mode-select">
+            <option value="normal">Normal (Ver Ratings OVR)</option>
+            <option value="blind">À Cegas (OVRs Ocultos no Draft 🔒)</option>
+          </select>
+        </div>
+
+        <button
+          class="btn btn-primary"
+          style="margin-top: 20px"
+          onclick="startGame()"
+        >
+          Iniciar Campanha
+        </button>
+      </div>
+
+      <!-- TELA 2: DRAFT & CAMPO -->
+      <div id="screen-game" class="screen">
+        <div class="game-layout">
+          <!-- Lado Esquerdo: Campo Estruturado -->
+          <div id="tactical-field" class="field-container"></div>
+
+          <!-- Lado Direito: Opções do Draft -->
+          <div class="draft-panel">
+            <div>
+              <h3 style="font-size: 1.1rem">Sorteio Atual:</h3>
+              <div
+                id="rolled-team-name"
+                style="
+                  font-size: 1.4rem;
+                  font-weight: bold;
+                  color: var(--accent-gold);
+                  margin: 5px 0;
+                "
+              ></div>
+              <p
+                id="placement-msg"
+                style="
+                  font-size: 0.85rem;
+                  color: var(--accent-gold);
+                  display: none;
+                  background: rgba(0, 0, 0, 0.3);
+                  padding: 8px;
+                  border-radius: 6px;
+                "
+              ></p>
+
+              <div id="options-container" class="options-list"></div>
+            </div>
+
+            <div>
+              <div class="reroll-container">
+                <button class="btn btn-secondary" onclick="rerollKeepTeam()">
+                  Trocar Copa
+                </button>
+                <button class="btn btn-secondary" onclick="rerollKeepYear()">
+                  Trocar Seleção
+                </button>
+              </div>
+              <button
+                id="btn-confirm-pick"
+                class="btn btn-disabled"
+                style="width: 100%; margin-top: 15px"
+                onclick="confirmPick()"
+                disabled
+              >
+                Confirmar Escolha
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TELA 3: SIMULAÇÃO DA COPA -->
+      <div id="screen-sim" class="screen">
+        <div class="sim-top">
+          <div>
+            <h2>Simulação da Copa do Mundo</h2>
+            <p class="sim-intro">
+              Jogue cada partida com emoção: 90 minutos, prorrogação e pênaltis
+              quando necessário.
+            </p>
+          </div>
+          <div class="match-stats">
+            <div class="sim-stat" id="sim-team-ovr"></div>
+            <div class="sim-stat">
+              Estrelas: <span id="sim-best-players"></span>
+            </div>
+            <div class="sim-stat">
+              Estilo: <span id="sim-playstyle">Equilibrado</span>
+            </div>
+            <div class="sim-stat">
+              Pontos: <span id="sim-group-points">0</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="match-display">
+          <div class="match-header">
+            <div class="match-phase-label" id="match-phase-label">
+              Fase: Grupos R1
+            </div>
+            <div class="match-timer" id="match-timer">00'</div>
+          </div>
+
+          <div class="scoreboard">
+            <div class="score-team">
+              <span class="score-label">Seu Time</span>
+              <span class="score-value" id="match-team-score">0</span>
+            </div>
+            <div class="score-vs">x</div>
+            <div class="score-team score-opponent">
+              <span class="score-label" id="match-opponent-name"
+                >Adversário</span
+              >
+              <span class="score-value" id="match-opponent-score">0</span>
+            </div>
+          </div>
+
+          <div class="event-stream" id="match-event-stream"></div>
+        </div>
+
+        <div id="sim-log" class="log-box"></div>
+
+        <button
+          id="btn-next-sim"
+          class="btn btn-accent"
+          style="margin-top: 20px; width: 100%"
+          onclick="runNextMatch()"
+        >
+          JOGAR 1 JOGO FASE DE GRUPO
+        </button>
+      </div>
+
+      <!-- TELA 4: FIM DE JOGO -->
+      <div
+        id="screen-end"
+        class="screen"
+        style="text-align: center; justify-content: center; gap: 20px"
+      >
+        <h2 id="end-title" style="font-size: 2.5rem"></h2>
+        <p
+          id="end-subtitle"
+          style="
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+          "
+        ></p>
+        <div>
+          <button
+            class="btn btn-primary"
+            onclick="changeScreen('screen-start')"
+          >
+            Jogar Novamente
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- INJEÇÃO DA ENGINE LOGICA DO JOGO -->
+    <script src="js/game.js"></script>
+  </body>
+</html>

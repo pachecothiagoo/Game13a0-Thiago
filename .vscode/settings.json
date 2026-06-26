@@ -1,0 +1,8 @@
+{
+  "chat.tools.terminal.autoApprove": {
+    "/^python -c \"from pathlib import Path; import re; p=Path\\('index\\.html'\\); t=p\\.read_text\\(encoding='utf-8'\\); print\\('cite_count', len\\(re\\.findall\\(r'\\\\\\\\\\[cite: \\*\\\\\\\\d\\+\\\\\\\\\\]', t\\)\\)\\); print\\('opponents', 'const OPPONENTS = \\[' in t\\)\"$/": {
+      "approve": true,
+      "matchCommandLine": true
+    }
+  }
+}
