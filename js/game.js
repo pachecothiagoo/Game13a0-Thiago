@@ -17,6 +17,27 @@ const FLAGS = {
   Bulgária: "🇧🇬",
   Bélgica: "🇧🇪",
   Marrocos: "🇲🇦",
+  Japão: "🇯🇵",
+  México: "🇲🇽",
+  Senegal: "🇸🇳",
+  China: "🇨🇳",
+  "Costa Rica": "🇨🇷",
+  Austrália: "🇦🇺",
+  Angola: "🇦🇴",
+  Irã: "🇮🇷",
+  Togo: "🇹🇬",
+  "Trinidad e Tobago": "🇹🇹",
+  "Nova Zelândia": "🇳🇿",
+  Paraguai: "🇵🇾",
+  Bósnia: "🇧🇦",
+  Argélia: "🇩🇿",
+  Panamá: "🇵🇦",
+  Islândia: "🇮🇸",
+  Canadá: "🇨🇦",
+  Camarões: "🇨🇲",
+  Qatar: "🇶🇦",
+  Tunísia: "🇹🇳",
+  Gana: "🇬🇭",
 };
 const DATABASE = {
   1966: {
@@ -168,6 +189,15 @@ const DATABASE = {
       { name: "Rivaldo", pos: "PE", ovr: 94 },
       { name: "Ronaldo Fenômeno", pos: "ATA", ovr: 97 },
     ],
+    Senegal: [
+      { name: "Tony Sylva", pos: "GOL", ovr: 82 },
+      { name: "Sylvain Distin", pos: "ZAG", ovr: 84 },
+      { name: "Kolo Touré", pos: "ZAG", ovr: 84 },
+      { name: "Aly Cissokho", pos: "LE", ovr: 80 },
+      { name: "Salif Diao", pos: "VOL", ovr: 81 },
+      { name: "El-Hadji Diouf", pos: "PD", ovr: 86 },
+      { name: "Henri Camara", pos: "ATA", ovr: 86 },
+    ],
   },
   2006: {
     Itália: [
@@ -178,6 +208,14 @@ const DATABASE = {
       { name: "Gennaro Gattuso", pos: "VOL", ovr: 87 },
       { name: "Andrea Pirlo", pos: "MC", ovr: 92 },
       { name: "Francesco Totti", pos: "ATA", ovr: 91 },
+    ],
+    Austrália: [
+      { name: "Mark Schwarzer", pos: "GOL", ovr: 85 },
+      { name: "Lucas Neill", pos: "LD", ovr: 84 },
+      { name: "Craig Moore", pos: "ZAG", ovr: 83 },
+      { name: "Harry Kewell", pos: "PD", ovr: 88 },
+      { name: "Tim Cahill", pos: "ATA", ovr: 90 },
+      { name: "Brett Emerton", pos: "PE", ovr: 85 },
     ],
   },
   2010: {
@@ -191,6 +229,14 @@ const DATABASE = {
       { name: "Andrés Iniesta", pos: "MC", ovr: 95 },
       { name: "David Villa", pos: "ATA", ovr: 91 },
     ],
+    Paraguai: [
+      { name: "Justo Villar", pos: "GOL", ovr: 84 },
+      { name: "Antolín Alcaraz", pos: "ZAG", ovr: 82 },
+      { name: "Paulo da Silva", pos: "ZAG", ovr: 83 },
+      { name: "Oscar Cardozo", pos: "ATA", ovr: 86 },
+      { name: "Roque Santa Cruz", pos: "ATA", ovr: 88 },
+      { name: "Salvador Cabañas", pos: "PD", ovr: 85 },
+    ],
   },
   2014: {
     Alemanha: [
@@ -202,6 +248,13 @@ const DATABASE = {
       { name: "Mesut Özil", pos: "MC", ovr: 90 },
       { name: "Thomas Müller", pos: "PD", ovr: 91 },
       { name: "Miroslav Klose", pos: "ATA", ovr: 88 },
+    ],
+    "Costa Rica": [
+      { name: "Keylor Navas", pos: "GOL", ovr: 92 },
+      { name: "Bryan Ruiz", pos: "MC", ovr: 87 },
+      { name: "Joel Campbell", pos: "ATA", ovr: 86 },
+      { name: "Celso Borges", pos: "MC", ovr: 85 },
+      { name: "Óscar Duarte", pos: "ZAG", ovr: 83 },
     ],
   },
   2018: {
@@ -216,6 +269,20 @@ const DATABASE = {
       { name: "Kylian Mbappé", pos: "PE", ovr: 92 },
       { name: "Olivier Giroud", pos: "ATA", ovr: 84 },
     ],
+    Islândia: [
+      { name: "Hannes Þór Halldórsson", pos: "GOL", ovr: 80 },
+      { name: "Ragnar Sigurðsson", pos: "ZAG", ovr: 82 },
+      { name: "Gylfi Sigurðsson", pos: "MC", ovr: 86 },
+      { name: "Alfreð Finnbogason", pos: "ATA", ovr: 84 },
+      { name: "Johann Berg Guðmundsson", pos: "PD", ovr: 85 },
+    ],
+    Tunísia: [
+      { name: "Aymen Mathlouthi", pos: "GOL", ovr: 82 },
+      { name: "Wahbi Khazri", pos: "PD", ovr: 84 },
+      { name: "Ferjani Sassi", pos: "MC", ovr: 82 },
+      { name: "Youssef Msakni", pos: "PE", ovr: 83 },
+      { name: "Naim Sliti", pos: "PD", ovr: 81 },
+    ],
   },
   2022: {
     Argentina: [
@@ -229,6 +296,35 @@ const DATABASE = {
       { name: "Ángel Di María", pos: "PD", ovr: 87 },
       { name: "Lionel Messi", pos: "PE", ovr: 99 },
       { name: "Julián Álvarez", pos: "ATA", ovr: 86 },
+    ],
+    Canadá: [
+      { name: "Alphonso Davies", pos: "LE", ovr: 90 },
+      { name: "Milan Borjan", pos: "GOL", ovr: 83 },
+      { name: "Jonathan David", pos: "ATA", ovr: 89 },
+      { name: "Cyle Larin", pos: "PD", ovr: 86 },
+      { name: "Stephen Eustáquio", pos: "MC", ovr: 84 },
+    ],
+    Qatar: [
+      { name: "Saad Al Sheeb", pos: "GOL", ovr: 81 },
+      { name: "Boualem Khoukhi", pos: "ZAG", ovr: 82 },
+      { name: "Akram Afif", pos: "PE", ovr: 83 },
+      { name: "Almoez Ali", pos: "ATA", ovr: 84 },
+      { name: "Abdulaziz Hatem", pos: "MC", ovr: 82 },
+    ],
+  },
+  2026: {
+    Senegal: [
+      { name: "Edouard Mendy", pos: "GOL", ovr: 88 },
+      { name: "Kalidou Koulibaly", pos: "ZAG", ovr: 90 },
+      { name: "Idrissa Gueye", pos: "VOL", ovr: 86 },
+      { name: "Pape Matar Sarr", pos: "MC", ovr: 85 },
+      { name: "Ismaïla Sarr", pos: "PE", ovr: 87 },
+      { name: "Mamadou Loum", pos: "PD", ovr: 84 },
+    ],
+    "Trinidad e Tobago": [
+      { name: "Dwayne De Rosario", pos: "MC", ovr: 86 },
+      { name: "Akeem Adams", pos: "ZAG", ovr: 82 },
+      { name: "Kenwyne Jones", pos: "ATA", ovr: 86 },
     ],
   },
 };
@@ -438,8 +534,10 @@ function renderField() {
   });
 
   ["ATA", "MID", "DEF", "GOL"].forEach((sec) => {
+    if (!rows[sec].length) return;
     const rowDiv = document.createElement("div");
     rowDiv.className = `field-row row-${sec.toLowerCase()}`;
+    rowDiv.style.gridTemplateColumns = `repeat(${rows[sec].length}, minmax(52px, 1fr))`;
     rows[sec].forEach((slot) => {
       const el = document.createElement("div");
       const classes = ["player-slot"];

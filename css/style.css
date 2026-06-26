@@ -152,9 +152,12 @@ select {
 }
 
 .field-row {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(52px, 1fr));
+  justify-items: center;
+  align-items: center;
   gap: 10px;
+  width: 100%;
   z-index: 2;
 }
 
@@ -162,22 +165,10 @@ select {
   background-color: rgba(15, 23, 42, 0.7);
   border: 2px dashed rgba(255, 255, 255, 0.3);
   border-radius: 8px;
-  width: 75px;
-  padding: 8px 4px;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-.player-slot.selectable-target {
-  border-color: var(--accent-gold);
-  box-shadow: 0 0 10px var(--accent-gold);
-  animation: pulse 1.5s infinite alternate;
+  width: 100%;
+  min-width: 52px;
+  max-width: 98px;
+  padding: 10px 6px;
 }
 
 .player-slot.slot-chosen {
@@ -501,46 +492,6 @@ select {
   color: #030712;
 }
 
-.field-row {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: minmax(48px, 1fr);
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  z-index: 2;
-}
-
-.player-slot {
-  background-color: rgba(15, 23, 42, 0.7);
-  border: 2px dashed rgba(255, 255, 255, 0.3);
-  border-radius: 8px;
-  width: 100%;
-  min-width: 52px;
-  max-width: 98px;
-  padding: 10px 6px;
-  text-align: center;
-  cursor: pointer;
-  transition:
-    transform 0.2s ease,
-    border-color 0.2s ease,
-    box-shadow 0.2s ease,
-    background-color 0.2s ease;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-.player-slot:hover {
-  transform: translateY(-2px);
-}
-
-.player-slot.filled:hover {
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
-}
-
 .log-box .log-entry {
   animation: fadeInUp 0.35s ease-out;
 }
@@ -563,6 +514,9 @@ select {
   .field-container {
     min-height: 480px;
   }
+  .field-row {
+    gap: 8px;
+  }
   .sim-header {
     grid-template-columns: 1fr;
   }
@@ -572,7 +526,12 @@ select {
 }
 @media (max-width: 620px) {
   .player-slot {
-    width: 68px;
+    min-width: 48px;
+    max-width: 72px;
+    padding: 8px 4px;
+  }
+  .field-row {
+    gap: 6px;
   }
   .options-list {
     max-height: 280px;
