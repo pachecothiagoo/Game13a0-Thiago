@@ -502,18 +502,22 @@ select {
 }
 
 .field-row {
-  display: flex;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(48px, 1fr);
   justify-content: center;
+  align-items: center;
   gap: 10px;
   z-index: 2;
-  flex-wrap: wrap;
 }
 
 .player-slot {
   background-color: rgba(15, 23, 42, 0.7);
   border: 2px dashed rgba(255, 255, 255, 0.3);
   border-radius: 8px;
-  width: clamp(64px, 10vw, 98px);
+  width: 100%;
+  min-width: 52px;
+  max-width: 98px;
   padding: 10px 6px;
   text-align: center;
   cursor: pointer;
